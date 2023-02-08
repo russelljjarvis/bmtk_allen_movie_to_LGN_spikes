@@ -1,4 +1,6 @@
 
+This is a repository for converting movies of static scenes into realistic spikes that would run through LGN On/Off cells.
+
 First make sure Docker is installed.
 To create a movie of two static naturalistic scenes, and to convert the movie to spikes use:
 ```
