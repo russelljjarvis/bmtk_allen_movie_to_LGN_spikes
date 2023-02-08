@@ -32,9 +32,9 @@ sudo docker run -v `pwd`:/home/shared/workspace alleninstitute/bmtk python apply
 
 ```
 
-![LGN_Spikes_png.png](LGN_Spikes_png.png)
-![natural_scenes.png](natural_scenes.png)
-![Application_of_LGN_Spikes_ontoL4.png](Application_of_LGN_Spikes_ontoL4.png)
+![https://github.com/russelljjarvis/bmtk_allen_movie_to_LGN_spikes/blob/develop/Ch5_filternet/LGN_Spikes_png.png](https://github.com/russelljjarvis/bmtk_allen_movie_to_LGN_spikes/blob/develop/Ch5_filternet/LGN_Spikes_png.png)
+![https://github.com/russelljjarvis/bmtk_allen_movie_to_LGN_spikes/blob/develop/Ch5_filternet/natural_scenes.png](https://github.com/russelljjarvis/bmtk_allen_movie_to_LGN_spikes/blob/develop/Ch5_filternet/natural_scenes.png)
+![https://github.com/russelljjarvis/bmtk_allen_movie_to_LGN_spikes/blob/develop/Ch5_filternet/Application_of_LGN_Spikes_ontoL4.png](https://github.com/russelljjarvis/bmtk_allen_movie_to_LGN_spikes/blob/develop/Ch5_filternet/Application_of_LGN_Spikes_ontoL4.png)
 
 
 
