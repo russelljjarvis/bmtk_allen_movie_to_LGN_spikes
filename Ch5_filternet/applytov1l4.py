@@ -9,12 +9,18 @@ from bmtk.simulator import filternet
 from bmtk.analyzer.spike_trains import plot_raster
 
 from bmtk.simulator import pointnet
+#import os
+#os.system("$(which pip) install pynest")
+import nest
 
 configure = pointnet.Config.from_json('config.pointnet_ns.json')
 configure.build_env()
 
 network = pointnet.PointNetwork.from_config(configure)
+
 sim = pointnet.PointSimulator.from_config(configure, network)
+#print(dir(sim))
+#sim.tstop = 10000.0
 sim.run()
 
 

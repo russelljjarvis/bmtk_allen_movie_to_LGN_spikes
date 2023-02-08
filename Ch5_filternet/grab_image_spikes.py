@@ -9,6 +9,7 @@ from bmtk.simulator import filternet
 from bmtk.analyzer.spike_trains import plot_raster
 
 from bmtk.simulator import pointnet
+import nest
 
 #from bmtk.analyzer.spike_trains import plot_raster
 def get_natural_scenes(output_dir='bob_images'):
@@ -78,40 +79,34 @@ if not os.path.exists('bob_images'):
 images = glob('bob_images/scene*.png')
 
 """
-images = glob('bob_images/scene*.png')
-orubt
-print(len(images))
-images = np.random.choice(images, size=12, replace=False)
-print(len(images))
+#images = glob('bob_images/scene*.png')
 
-create_movie_natural_scenes(images, movie_path='movies_new/ns_movie.9images.npy')
+#print(len(images))
+#images = np.random.choice(images, size=12, replace=False)
+#print(len(images))
+
+images = ["bob_images/scene.001.gray_918x1174.png", "bob_images/scene.016.gray_918x1174.png", "bob_images/scene.031.gray_918x1174.png"]
+
+create_movie_natural_scenes(images, movie_path='movies_new/ns_movie.{0}.images.npy'.format(len(images)))
 #size = len(images) * 1000
-show_movie(movie_file='movies_new/ns_movie.9images.npy', frames=range(0, 3500, 250))
+show_movie(movie_file='movies_new/ns_movie.{0}.images.npy'.format(len(images)), frames=range(0, 3500, 250))
 
 config = filternet.Config.from_json('config.filternet_ns.json')
 config.build_env()
 
 net = filternet.FilterNetwork.from_config(config)
+pynest.plot_network(net, 'this_net.png')#, ext_conns=False,
+
 sim = filternet.FilterSimulator.from_config(config, net)
 sim.run()
 
 
 
-_ = plot_raster(config_file='config.filternet_ns.json', group_by='model_template',save_as="LGN_Spikes_Russell.png")
-
-
-configure = pointnet.Config.from_json('config.pointnet_ns.json')
-configure.build_env()
-
-network = pointnet.PointNetwork.from_config(configure)
-sim = pointnet.PointSimulator.from_config(configure, network)
-sim.run()
+_ = plot_raster(config_file='config.filternet_ns.json', group_by='model_template',save_as="LGN_Spikes_png")
 
 
 
-_ = plot_raster(config_file='config.pointnet_ns.json', group_by='model_name', show=False,save_as="Application_of_LGN_Spikes_ontoL4_Russell.png")
-
-
+"""
 def get_touchofevil_movies(output_dir='movies', res_row=120, res_col=240, fps=1000):
     frame_conv = int(np.floor(fps/30.0))
     def convert_movie(name, movie):
@@ -141,3 +136,4 @@ def get_touchofevil_movies(output_dir='movies', res_row=120, res_col=240, fps=10
     convert_movie('natural_movie_two', movie)
 
 #get_touchofevil_movies()
+"""

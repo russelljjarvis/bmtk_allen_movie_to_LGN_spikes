@@ -80,45 +80,45 @@ def build_l4():
     l4 = NetworkBuilder('l4')
 
     # Add nodes
-    x, y, z = get_coords_column(80)
+    x, y, z = get_coords_column(180)
     l4.add_nodes(
-        N=80,
+        N=180,
         model_type='point_neuron',
         model_template='nest:glif_lif_asc_psc',
         dynamics_params='Scnn1a_515806250_glif_lif_asc.json',
         x=x, y=y, z=z,
-        tuning_angle=np.linspace(start=0.0, stop=360.0, num=80, endpoint=False),
+        tuning_angle=np.linspace(start=0.0, stop=360.0, num=180, endpoint=False),
         model_name='Scnn1a',
         ei_type='e'
     )
 
-    x, y, z = get_coords_column(80)
+    x, y, z = get_coords_column(180)
     l4.add_nodes(
-        N=80,
+        N=180,
         model_type='point_neuron',
         model_template='nest:glif_lif_asc_psc',
         dynamics_params='Rorb_512332555_glif_lif_asc.json',
         x=x, y=y, z=z,
         model_name='Rorb',
         ei_type='e',
-        tuning_angle=np.linspace(start=0.0, stop=360.0, num=80, endpoint=False),
+        tuning_angle=np.linspace(start=0.0, stop=360.0, num=180, endpoint=False),
     )
 
-    x, y, z = get_coords_column(80)
+    x, y, z = get_coords_column(180)
     l4.add_nodes(
-        N=80,
+        N=180,
         model_type='point_neuron',
         model_template='nest:glif_lif_asc_psc',
         dynamics_params='Nr5a1_587862586_glif_lif_asc.json',
         x=x, y=y, z=z,
         model_name='Nr5a1',
         ei_type='e',
-        tuning_angle=np.linspace(start=0.0, stop=360.0, num=80, endpoint=False),
+        tuning_angle=np.linspace(start=0.0, stop=360.0, num=180, endpoint=False),
     )
 
-    x, y, z = get_coords_column(60)
+    x, y, z = get_coords_column(160)
     l4.add_nodes(
-        N=60,
+        N=160,
         model_type='point_neuron',
         model_template='nest:glif_lif_asc_psc',
         dynamics_params='Pvalb_574058595_glif_lif_asc.json',
@@ -181,9 +181,11 @@ def build_lgn(l4):
     lgn = NetworkBuilder('lgn')
 
     # Build Nodes
-    x, y = get_coords_plane(50)
+    NN = 250
+
+    x, y = get_coords_plane(NN)
     lgn.add_nodes(
-        N=50,
+        N=NN,
         x=x,
         y=y,
         model_type='virtual',
@@ -191,10 +193,9 @@ def build_lgn(l4):
         dynamics_params='tON_TF8.json',
         ei_type='e'
     )
-
-    x, y = get_coords_plane(50)
+    x, y = get_coords_plane(NN)
     lgn.add_nodes(
-        N=50,
+        N=NN,
         x=x,
         y=y,
         model_type='virtual',
@@ -230,6 +231,7 @@ def build_lgn(l4):
 
     lgn.build()
     lgn.save(output_dir='network')
+    print("hit a call to this function")
     return lgn
 
 

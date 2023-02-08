@@ -80,45 +80,45 @@ def build_l4():
     l4 = NetworkBuilder('l4')
 
     # Add nodes
-    x, y, z = get_coords_column(180)
+    x, y, z = get_coords_column(45)
     l4.add_nodes(
-        N=180,
+        N=45,
         model_type='point_neuron',
         model_template='nest:glif_lif_asc_psc',
         dynamics_params='Scnn1a_515806250_glif_lif_asc.json',
         x=x, y=y, z=z,
-        tuning_angle=np.linspace(start=0.0, stop=360.0, num=180, endpoint=False),
+        tuning_angle=np.linspace(start=0.0, stop=360.0, num=45, endpoint=False),
         model_name='Scnn1a',
         ei_type='e'
     )
 
-    x, y, z = get_coords_column(180)
+    x, y, z = get_coords_column(45)
     l4.add_nodes(
-        N=180,
+        N=45,
         model_type='point_neuron',
         model_template='nest:glif_lif_asc_psc',
         dynamics_params='Rorb_512332555_glif_lif_asc.json',
         x=x, y=y, z=z,
         model_name='Rorb',
         ei_type='e',
-        tuning_angle=np.linspace(start=0.0, stop=360.0, num=180, endpoint=False),
+        tuning_angle=np.linspace(start=0.0, stop=360.0, num=45, endpoint=False),
     )
 
-    x, y, z = get_coords_column(180)
+    x, y, z = get_coords_column(45)
     l4.add_nodes(
-        N=180,
+        N=45,
         model_type='point_neuron',
         model_template='nest:glif_lif_asc_psc',
         dynamics_params='Nr5a1_587862586_glif_lif_asc.json',
         x=x, y=y, z=z,
         model_name='Nr5a1',
         ei_type='e',
-        tuning_angle=np.linspace(start=0.0, stop=360.0, num=180, endpoint=False),
+        tuning_angle=np.linspace(start=0.0, stop=360.0, num=45, endpoint=False),
     )
 
-    x, y, z = get_coords_column(160)
+    x, y, z = get_coords_column(460)
     l4.add_nodes(
-        N=160,
+        N=460,
         model_type='point_neuron',
         model_template='nest:glif_lif_asc_psc',
         dynamics_params='Pvalb_574058595_glif_lif_asc.json',
@@ -132,7 +132,7 @@ def build_l4():
         source=l4.nodes(ei_type='e'),
         target=l4.nodes(ei_type='e'),
         connection_rule=exc_exc_rule,
-        connection_params={'max_syns': 15},
+        connection_params={'max_syns': 8},
         syn_weight=2.5,
         delay=2.0,
         dynamics_params='static_ExcToExc.json',
@@ -143,7 +143,7 @@ def build_l4():
         source=l4.nodes(ei_type='e'),
         target=l4.nodes(ei_type='i'),
         connection_rule=others_conn_rule,
-        connection_params={'max_syns': 12},
+        connection_params={'max_syns': 11},
         syn_weight=5.0,
         delay=2.0,
         dynamics_params='static_ExcToInh.json',
@@ -154,7 +154,7 @@ def build_l4():
         source=l4.nodes(ei_type='i'),
         target=l4.nodes(ei_type='e'),
         connection_rule=others_conn_rule,
-        connection_params={'max_syns': 4},
+        connection_params={'max_syns': 14},
         syn_weight=-6.5,
         delay=2.0,
         dynamics_params='static_InhToExc.json',
@@ -209,7 +209,7 @@ def build_lgn(l4):
         source=lgn.nodes(),
         target=l4.nodes(ei_type='e'),
         connection_rule=connect_lgn_cells,
-        connection_params={'max_targets': 6},
+        connection_params={'max_targets': 3},
         iterator='one_to_all',
         model_template='static_synapse',
         dynamics_params='static_ExcToExc.json',
@@ -221,7 +221,7 @@ def build_lgn(l4):
         source=lgn.nodes(),
         target=l4.nodes(ei_type='i'),
         connection_rule=connect_lgn_cells,
-        connection_params={'max_targets': 12, 'ellipse': (400.0, 400.0)},
+        connection_params={'max_targets': 15, 'ellipse': (400.0, 400.0)},
         iterator='one_to_all',
         model_template='static_synapse',
         dynamics_params='static_ExcToInh.json',
@@ -231,7 +231,6 @@ def build_lgn(l4):
 
     lgn.build()
     lgn.save(output_dir='network')
-    print("hit a call to this function")
     return lgn
 
 
